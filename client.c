@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 
-#define PORT 36078
+#define PORT 36079
 
 int main(void)
 {
