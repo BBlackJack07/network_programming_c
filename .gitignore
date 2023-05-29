@@ -1,0 +1,5 @@
+server
+client
+a.out
+*.o
+.vscode/**
