@@ -38,6 +38,7 @@ void * handle_client(void * varg)
     close(clifd);
     printf("client %d disconnected\n", args->which);
     args->clients[args->which] = -1;
+    free(args);
     return NULL;
 }
 
@@ -82,12 +83,12 @@ int main(void) {
         else {
             clients[nb_clients] = sockfd_client;
             nb_clients++;
-            struct arg args;
-            args.which = nb_clients - 1;
-            args.clients = clients;
-            args.nb_clients = &nb_clients;
+            struct arg * args = malloc(sizeof(struct arg));
+            args->which = nb_clients - 1;
+            args->clients = clients;
+            args->nb_clients = &nb_clients;
             pthread_t tid;
-            pthread_create(&tid, NULL, handle_client, &args);
+            pthread_create(&tid, NULL, handle_client, args);
             tids[nb_clients-1] = tid;
         }
     }
