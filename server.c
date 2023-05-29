@@ -113,7 +113,7 @@ int main(void) {
     args_cli.serverfd = &sockfd;
     pthread_t cli_tid;
     pthread_create(&cli_tid, NULL, handle_cli, &args_cli);
-    while (!stop || nb_clients < MAX_CLIENTS) 
+    while (!stop && nb_clients < MAX_CLIENTS) 
     {
         if ((sockfd_client = accept(sockfd, (struct sockaddr*)&addr, (socklen_t*) &addrlen)) < 0)
         {

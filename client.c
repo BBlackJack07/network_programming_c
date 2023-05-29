@@ -39,7 +39,10 @@ int main(void)
    while(1) {
       sleep(0.5);
       valread = read(sockfd, buffer, 1024);
-      printf("> %s\n", buffer);
+      if (valread > 0)
+          printf("> %s\n", buffer);
+      else if (send(sockfd, "\00\00\00", 3, MSG_NOSIGNAL) < 0)
+          break;
    }
    close(sockfd);
    return 0;
