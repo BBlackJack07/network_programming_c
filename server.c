@@ -36,7 +36,7 @@ void * handle_client(void * varg)
             for(int i = 0; i < *(args->nb_clients); i++)
             {
                 if (args->clients[i] != -1)
-                    send(args->clients[i], buffer, strlen(buffer), 0);
+                    send(args->clients[i], buffer, valread, 0);
             }
         }
         else if (send(clifd, "\00\00\00", 3, MSG_NOSIGNAL) < 0)

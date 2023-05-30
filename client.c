@@ -8,6 +8,10 @@
 
 #define PORT 36079
 
+#ifdef __APPLE__
+#define MSG_NOSIGNAL SO_NOSIGPIPE
+#endif
+
 void * receive_msg(void * vargs)
 {
     int * sockfd_p = vargs;
